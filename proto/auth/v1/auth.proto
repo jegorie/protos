@@ -1,0 +1,32 @@
+syntax = "proto3";
+
+package auth.v1;
+
+option go_package = "github.com/jegorie/protos/gen/proto/auth/v1;authv1";
+
+service AuthSerivce {
+  rpc Register (RegisterRequest) returns (RegisterResponse);
+  rpc Login (LoginRequest) returns (LoginResponse);
+}
+
+// service Permissions {
+//    GetUserPermissions(GetUserPermissionsRequest) return UserPermissions
+// }
+
+message RegisterRequest {
+  string email = 1;
+  string password = 2;}
+
+message RegisterResponse {
+  int64 user_id = 1; 
+}
+
+message LoginRequest {
+  string email = 1;
+  string password = 2;
+  int32 app_id = 3;
+}
+
+message LoginResponse {
+  string token = 1;
+}
